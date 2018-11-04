@@ -4,7 +4,8 @@
             "name": "Win32",
             "includePath": [
                 "${workspaceFolder}/**",
-                "${workspaceFolder}/src/packet/header"
+                "${workspaceFolder}/src/packet/header",
+                "${workspaceFolder}/src/victoryconnect/headers"
             ],
             "defines": [
                 "_DEBUG",
