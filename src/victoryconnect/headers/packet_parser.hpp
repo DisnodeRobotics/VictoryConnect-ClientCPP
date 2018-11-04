@@ -1,13 +1,11 @@
-#ifndef _VC_PACKET_BUILDER_HEADER__
-#define _VC_PACKET_BUILDER_HEADER__
+#ifndef _VC_PACKET_PARSER_HEADER__
+#define _VC_PACKET_PARSER_HEADER__
 
 #include "packet.hpp"
 
-class PacketBulder{
+class PacketParser{
     public:
-    static Packet fromString(std::string){
-        
-    }
+    static Packet parse(std::string);
 };
 
 #endif

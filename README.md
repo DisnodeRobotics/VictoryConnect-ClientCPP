@@ -7,7 +7,6 @@ In development
 ## To Do
 - TCP Client
 - UDP Client
-- Packet Parser
 - Heartbeat loops
 - Command Register
 - Subscribe

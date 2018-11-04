@@ -34,7 +34,7 @@ void Packet::setType(PacketType type){
 std::string Packet::getString(){
     std::string final = std::to_string(mPacketType);
     final += " " + mPath + " " + "{";
-    final += VCUtils::vectorJoin(mData);
+    final += VCUtils::vectorJoin(mData, ";");
     final += "}~\n";
     return final;
 }
