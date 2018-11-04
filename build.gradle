@@ -1,0 +1,23 @@
+apply plugin : 'cpp' 
+
+model { 
+    components {
+        victoryconnect(NativeLibrarySpec) { 
+        } 
+        // Let's try using the library
+        main(NativeExecutableSpec) { 
+            sources {
+                cpp.lib library: "victoryconnect" , linkage: "static"
+            }
+        }
+    }
+
+    binaries {
+        withType(SharedLibraryBinarySpec) {
+            if (toolChain in VisualCpp) {
+                cppCompiler.define "DLL_EXPORT"
+            }
+        }
+    }
+    
+}
