@@ -16,12 +16,13 @@ In development
 - Network Error Handling
 
 ## Building
+
 This project implements gradle for the build and testing process. To start run
 `./gradlew` to aquire gradle.      
 Then simply run `./gradlew build` to run tests, build the lib, and build the test executable.   
 -----
-`"build/exe/main/main.exe"` - Will run the test executable.
-`./gradlew build` - Will build the libs and exec and run tests
+`"build/exe/main/main.exe"` - Will run the test executable.    
+`./gradlew build` - Will build the libs and exec and run tests      
 
 ## Credits
 By Alex Carter for Colton Robotics.    
