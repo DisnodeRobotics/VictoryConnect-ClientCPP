@@ -8,6 +8,4 @@ enum PacketType {
     COMMAND = 2
 };
 
-
-
 #endif

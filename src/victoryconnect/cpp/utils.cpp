@@ -1,6 +1,6 @@
 #include "utils.hpp"
-
-std::string VCUtils::vectorJoin(std::vector<std::string> in, std::string joiner){
+using namespace VictoryConnect;
+std::string Utils::vectorJoin(std::vector<std::string> in, std::string joiner){
     std::string result = "";
     for(int i=0;i<in.size();i++){
         if(i<in.size() -1){
@@ -12,7 +12,7 @@ std::string VCUtils::vectorJoin(std::vector<std::string> in, std::string joiner)
     return result;
 }
 
-std::vector<std::string> VCUtils::strSplit(std::string input, std::string delim){
+std::vector<std::string> Utils::strSplit(std::string input, std::string delim){
     std::vector<std::string> result ;
     
     while(input.size()){

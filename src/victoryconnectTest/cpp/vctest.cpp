@@ -2,22 +2,25 @@
 #include "packet.hpp"
 #include "packet_parser.hpp"
 #include "utils.hpp"
-TEST(VictoryConnectTest, UtilsVector){
+
+using namespace VictoryConnect;
+
+TEST(VCUtilsTest, UtilsVectorJoined){
   std::vector<std::string> testVector = {"test1", "test2", "test3"};
-  std::string joined = VCUtils::vectorJoin(testVector, ",");
+  std::string joined = Utils::vectorJoin(testVector, ",");
   EXPECT_EQ(joined, "test1,test2,test3");
-  std::string joined2 = VCUtils::vectorJoin(testVector, ";");
+  std::string joined2 = Utils::vectorJoin(testVector, ";");
   EXPECT_EQ(joined2, "test1;test2;test3");
 }
 
-TEST(VictoryConnectTest, UtilsString){
+TEST(VCUtilsTest, UtilsStringSplit){
   std::string testStr = "this is a test";
-  std::vector<std::string> result = VCUtils::strSplit(testStr," ");
+  std::vector<std::string> result = Utils::strSplit(testStr," ");
   std::vector<std::string> expected =  {"this", "is", "a", "test"};
   EXPECT_EQ(result,expected);
 }
 
-TEST(VictoryConnectTest, PacketClassCreateCheck) {
+TEST(VCPacketTest, PacketClassCreateCheck) {
     std::vector<std::string> mockData = {"test1", "test2", "test3"};
     Packet p1(PacketType::COMMAND,"test/path", mockData);
     EXPECT_EQ(p1.getType(), PacketType::COMMAND);
@@ -32,13 +35,13 @@ TEST(VictoryConnectTest, PacketClassCreateCheck) {
 
 }
 
-TEST(VictoryConnectTest, PacketClassStringCheck){
+TEST(VCPacketTest, PacketClassStringCheck){
   std::vector<std::string> mockData = {"test1", "test2", "test3"};
   Packet p1(PacketType::COMMAND,"test/path", mockData);
   EXPECT_EQ(p1.getString(), "2 test/path {test1;test2;test3}~\n");
 }
 
-TEST(VictoryConnectTest, PacketParserCheck){
+TEST(VCPacketParserTest, PacketParserCheck){
   std::string inputString = "2 test/path {test1;test2;test3;}~";
  
   std::vector<std::string> expectedData = {"test1", "test2", "test3"};

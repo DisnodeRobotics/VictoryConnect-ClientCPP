@@ -1,5 +1,8 @@
 #include "packet.hpp"
 #include "utils.hpp"
+
+using namespace VictoryConnect;
+
 Packet::Packet(PacketType type, std::string path){
     mPacketType = type;
     mPath       = path;
@@ -34,7 +37,7 @@ void Packet::setType(PacketType type){
 std::string Packet::getString(){
     std::string final = std::to_string(mPacketType);
     final += " " + mPath + " " + "{";
-    final += VCUtils::vectorJoin(mData, ";");
+    final += Utils::vectorJoin(mData, ";");
     final += "}~\n";
     return final;
 }
