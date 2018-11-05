@@ -5,8 +5,8 @@ CPP Client for VictoryConnect.
 In development
 
 ## VC Info
-**Client Lib Version:** *0.0.1*
-**VictoryConnect Protocol Version:** *VCP 1*
+**Client Lib Version:** *0.0.1*   
+**VictoryConnect Protocol Version:** *VCP 1*   
 
 ## To Do
 - TCP Client
