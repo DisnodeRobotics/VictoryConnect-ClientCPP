@@ -1,4 +1,5 @@
 #include "client.hpp"
+#include <string>
 using namespace VictoryConnect;
 
 Client::Client(std::string id, std::string name){
@@ -19,15 +20,18 @@ void Client::sendPacket(Packet toSend, std::string connection){
 
 // Protocol Functions
 void Client::newTopic(std::string name, std::string path, std::string connection){
-
+    Packet newTopicPacket(COMMAND, "server/new_topic", {name, path,connection});
+    sendPacket(newTopicPacket);
 }
 
 void Client::setTopic(std::string path, std::string value){
-
+    Packet setTopicPacket(SUBMIT, path, {value});
+    sendPacket(setTopicPacket);
 }
 
 void Client::setTopic(std::string path, std::vector<std::string> values){
-
+    Packet setTopicPacket(SUBMIT, path, values);
+    sendPacket(setTopicPacket);
 }
 
 void Client::subscribe(std::string path, void (*cb) (Packet packet)){

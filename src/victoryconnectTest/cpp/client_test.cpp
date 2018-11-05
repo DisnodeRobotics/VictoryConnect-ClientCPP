@@ -9,6 +9,32 @@ TEST(VCClientTest, CreateCheck){
     EXPECT_EQ(c.getId(), "test-client");
 }
 
+TEST(VCClientTest, NewTopicCheck){
+    Client c("test-client","Test Client!");
+    c.newTopic("Test Topic", "test/topic", "TCP");
+    EXPECT_EQ(c.getSendQueue()[0].getType(), COMMAND);
+    EXPECT_EQ(c.getSendQueue()[0].getPath(), "server/new_topic");
+    EXPECT_EQ(c.getSendQueue()[0].getData()[0], "Test Topic");
+    EXPECT_EQ(c.getSendQueue()[0].getData()[1], "test/topic");
+    EXPECT_EQ(c.getSendQueue()[0].getData()[2], "TCP");
+}
+TEST(VCClientTest, SetTopicSingleValueCheck){
+    Client c("test-client","Test Client!");
+    c.setTopic("test/topic", "test_value");
+    EXPECT_EQ(c.getSendQueue()[0].getType(), SUBMIT);
+    EXPECT_EQ(c.getSendQueue()[0].getPath(), "test/topic");
+    EXPECT_EQ(c.getSendQueue()[0].getData()[0], "test_value");
+}
+
+TEST(VCClientTest, SetTopicMultiValueCheck){
+    Client c("test-client","Test Client!");
+    std::vector<std::string> testData = {"test_value", "test_value2"};
+    c.setTopic("test/topic", testData);
+    EXPECT_EQ(c.getSendQueue()[0].getType(), SUBMIT);
+    EXPECT_EQ(c.getSendQueue()[0].getPath(), "test/topic");
+    EXPECT_EQ(c.getSendQueue()[0].getData()[0], "test_value");
+    EXPECT_EQ(c.getSendQueue()[0].getData()[1], "test_value2");
+}
 
 TEST(VCClientTest, TickCheck){
     Client c("test-client","Test Client!");
@@ -51,6 +77,7 @@ TEST(VCClientTest, SubscribeCheck){
         
     });
     EXPECT_EQ(c.verifySubscribeListener("test/path"), true);
+    EXPECT_EQ(c.getSendQueue()[0].getType(), COMMAND);
     EXPECT_EQ(c.getSendQueue()[0].getPath(), "server/subscribe");
     EXPECT_EQ(c.getSendQueue()[0].getData()[0], "test/path");
 }
