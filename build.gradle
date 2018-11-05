@@ -1,6 +1,7 @@
 apply plugin : 'cpp' 
 apply plugin: 'google-test' 
 model { 
+
      repositories {
         libs(PrebuiltLibraries) { 
             googleTest { 
@@ -36,6 +37,19 @@ model {
             if (targetPlatform.operatingSystem.linux) {
                 cppCompiler.args '-pthread'
                 linker.args '-pthread'
+            }
+        }
+
+        all {
+            // Define a preprocessor macro for every binary
+            cppCompiler.define "NDEBUG"
+
+            // Define toolchain-specific compiler and linker options
+            if (toolChain in Gcc) {
+                cppCompiler.args "-std=c++11"
+            }
+            if (toolChain in VisualCpp) {
+
             }
         }
     }

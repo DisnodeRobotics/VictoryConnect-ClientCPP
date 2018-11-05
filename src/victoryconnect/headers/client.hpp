@@ -10,7 +10,6 @@ namespace VictoryConnect{
     class Client{
         private: 
             //Vars
-
             std::string mId;
             std::string mName;
 
@@ -55,7 +54,6 @@ namespace VictoryConnect{
             void callCommand(std::string path, std::string value);
             void callCommand(std::string path, std::vector<std::string> values);
             void setTickRate(int tickRate);
-            
 
             //Get Functions
             std::string getId();
