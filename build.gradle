@@ -7,7 +7,7 @@ model {
             googleTest { 
                 headers.srcDir new File(projectDir, "/thirdparty/googletest-master/googletest/include") 
                 binaries.withType(StaticLibraryBinary) {
-                    staticLibraryFile = file(projectDir.getPath() + "/thirdparty/googletest-master/googletest/build/" + findGoogleTestStaticLib(targetPlatform)) 
+                    staticLibraryFile = file(projectDir.getPath() + "/thirdparty/googletest-master/googletest/build_lol/" + findGoogleTestStaticLib(targetPlatform)) 
                 }
             }
         }
