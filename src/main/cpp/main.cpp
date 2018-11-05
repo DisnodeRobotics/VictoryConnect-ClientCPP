@@ -1,5 +1,5 @@
 #include <iostream>  
-#include "victoryconnect.h"
+#include "victoryconnect.hpp"
 int main(int argc, char** argv) {
     VictoryConnect::Client* client = new VictoryConnect::Client("test-id","Test");
     std::cout<<"----- VictoryConnect Test Client Info -----" << std::endl;

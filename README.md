@@ -1,6 +1,6 @@
 # VictoryConnect-ClientCPP
 CPP Client for VictoryConnect.
-
+[![Build Status](https://travis-ci.org/ElectroTitans/VictoryConnect-ClientCPP.svg?branch=master)](https://travis-ci.org/ElectroTitans/VictoryConnect-
 ## Status
 In development
 
