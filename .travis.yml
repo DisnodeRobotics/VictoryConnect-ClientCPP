@@ -5,6 +5,7 @@ jdk:
   - oraclejdk8
 
 script:
+  - cd /thirdparty/googletest-master/ && cmake . && make
   - chmod +x gradlew
   - ./gradlew build
 
