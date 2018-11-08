@@ -16,10 +16,12 @@ Packet::Packet(PacketType type, std::string path, std::vector<std::string> data)
 
 void Packet::addData(std::string dataToAdd){
     mData.push_back(dataToAdd);
+    
 }
 
 void Packet::setProtocol(std::string protocol){
-   // mProtocol = protocol;
+   // = protocol;
+   
 }
 
 void Packet::setRaw(std::string raw){

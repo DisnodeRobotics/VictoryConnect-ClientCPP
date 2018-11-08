@@ -14,7 +14,7 @@ namespace VictoryConnect{
             
             void setServerInfo(std::string ip, int port);
 
-            virtual bool connect();
+            bool connect();
 
             //Get Functions
             std::string getServerIP();
