@@ -8,7 +8,7 @@ namespace VictoryConnect{
     class TCPConnetion : public Connection{
        
         public:
-             bool overrideconnect() {}
+             bool connect() {}
             
     };
 }
