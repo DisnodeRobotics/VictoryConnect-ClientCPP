@@ -5,6 +5,7 @@ jdk:
   - oraclejdk8
 
 script:
+  - chmod +x ./thirdparty/googletest-master/ci/travis.sh
   - ./thirdparty/googletest-master/ci/travis.sh
   - chmod +x gradlew
   - ./gradlew build
