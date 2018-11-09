@@ -1,14 +1,21 @@
 #include "connection.hpp"
 using namespace VictoryConnect;
 
-Connection::Connection(std::string ip, int port, Client* client){
+Connection::Connection(std::string ip, int port){
     mServerIP = ip;
     mServerPort = port;
-    mParent = client;
 }
 
 
 void Connection::setServerInfo(std::string ip, int port){
     mServerIP   = ip;
     mServerPort = port;
+}
+
+std::string Connection::getServerIP(){
+    return mServerIP;
+}
+
+int Connection::getServerPort(){
+    return mServerPort;
 }

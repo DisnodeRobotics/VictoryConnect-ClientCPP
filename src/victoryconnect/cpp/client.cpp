@@ -1,12 +1,25 @@
 #include "client.hpp"
 #include <string>
 using namespace VictoryConnect;
-
+#include "tcp_connection.hpp"
 Client::Client(std::string id, std::string name){
         mId = id;
         mName = name;
 }
+bool Client::enableTCP(std::string serverIP, int serverPort){
+    TCPConnetion* tcp = new TCPConnetion(serverIP, serverPort);
+    mConnections["TCP"] = tcp;
 
+    bool startRes = tcp->start();
+    std::cout << "Start Result: " << startRes << std::endl;
+    if(startRes){
+        sendPacket(Packet(COMMAND,"server/register",{getId(), getName()}));
+        return true;
+    }
+
+    return false;
+   
+}
 // Until Functions
 void Client::sendPacket(Packet toSend){
     sendPacket(toSend, mDefaultConnection);

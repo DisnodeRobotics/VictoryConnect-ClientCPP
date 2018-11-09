@@ -18,10 +18,14 @@
 namespace VictoryConnect{
     class TCPConnetion : public Connection{
         private:
-            int mSock;
-            struct mSockAddIn server;
+            int mSock = -1;
+            struct sockaddr_in mServer;
         public:
-            bool connect();
+            TCPConnetion(std::string ip, int port)
+            : Connection(ip, port) {}
+            
+            bool start();
+            bool sendString(std::string toSend);
             
     };
 }

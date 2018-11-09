@@ -2,19 +2,20 @@
 #define _VC_CONNECTION_HEADER__
 #include <vector>
 #include <string>
-#include "client.hpp"
 namespace VictoryConnect{
     class Connection{
-        private:
-            Client* mParent;
+        protected:
             std::string mServerIP;
             int         mServerPort;
+            
         public:
-            Connection(std::string ip, int port, Client* client);
+            Connection(std::string ip, int port);
             
             void setServerInfo(std::string ip, int port);
 
-            bool connect();
+            bool start();
+
+            bool sendString(std::string toSend);
 
             //Get Functions
             std::string getServerIP();

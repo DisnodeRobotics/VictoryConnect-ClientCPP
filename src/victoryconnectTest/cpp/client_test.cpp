@@ -9,6 +9,16 @@ TEST(VCClientTest, CreateCheck){
     EXPECT_EQ(c.getId(), "test-client");
 }
 
+TEST(VCClientTest, EnableTCPCheck){
+    Client c("test-client","Test Client!");
+    bool res = c.enableTCP("127.0.0.1", 5000);
+    EXPECT_EQ(res, true);
+    EXPECT_EQ(c.getSendQueue()[0].getType(), COMMAND);
+    EXPECT_EQ(c.getSendQueue()[0].getPath(), "server/register");
+    EXPECT_EQ(c.getSendQueue()[0].getData()[0], c.getId());
+    EXPECT_EQ(c.getSendQueue()[0].getData()[1], c.getName());
+}
+
 TEST(VCClientTest, NewTopicCheck){
     Client c("test-client","Test Client!");
     c.newTopic("Test Topic", "test/topic", "TCP");

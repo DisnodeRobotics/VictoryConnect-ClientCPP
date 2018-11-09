@@ -10,7 +10,6 @@ int main(int argc, char** argv) {
         std::cout << "\t Packet: \t " << packet.getPath() << std::endl;
     });
 
-    
-
+    client->enableTCP("127.0.0.1", 5000);
     return 0;
 }

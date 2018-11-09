@@ -4,7 +4,8 @@
 #include <string>
 #include <map>
 #include "packet.hpp"
-
+#include "tcp_connection.hpp"
+#include "connection.hpp"
 namespace VictoryConnect{
 
     class Client{
@@ -20,6 +21,7 @@ namespace VictoryConnect{
 
             std::map<std::string, void (*) (Packet packet)> commandListeners;
             std::map<std::string, void (*) (Packet packet)> subscribeListeners; 
+            std::map<std::string, VictoryConnect::Connection*> mConnections;
 
             std::vector<Packet> mSendQueue;
 
@@ -37,8 +39,8 @@ namespace VictoryConnect{
         public:
             Client(std::string id, std::string name);
 
-            void enableUDP(std::string serverIP, int serverPort);
-            void enableTCP(std::string serverIP, int serverPort);
+            bool enableUDP(std::string serverIP, int serverPort);
+            bool enableTCP(std::string serverIP, int serverPort);
 
             void setDefaultConnection(std::string connnection);
             void setASAP(bool asap);
