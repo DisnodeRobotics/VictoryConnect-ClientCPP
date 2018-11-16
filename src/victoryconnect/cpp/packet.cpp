@@ -20,8 +20,7 @@ void Packet::addData(std::string dataToAdd){
 }
 
 void Packet::setProtocol(std::string protocol){
-   // = protocol;
-   
+   mProtocol = protocol;
 }
 
 void Packet::setRaw(std::string raw){
@@ -44,6 +43,15 @@ std::string Packet::getString(){
     return final;
 }
 
+std::string Packet::toString(){
+    std::string final = getProtocol() + "->";
+    final += std::to_string(mPacketType);
+    final += " " + mPath + " " + "{";
+    final += Utils::vectorJoin(mData, ";");
+    final += "}~\n";
+    return final;
+}
+
 std::string Packet::getPath(){
     return mPath;
 }
@@ -53,8 +61,7 @@ std::string Packet::getRaw(){
 }
 
 std::string Packet::getProtocol(){
-    return "";
-    //return mProtocol;
+    return mProtocol;
 }
 
 std::vector<std::string> Packet::getData(){

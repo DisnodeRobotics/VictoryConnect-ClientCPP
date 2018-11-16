@@ -11,6 +11,7 @@ bool TCPConnetion::start()
 		if (mSock == -1)
 		{
 			cout << "Could not create socket" << endl;
+			return false;
 		}
 	}
 	if (inet_addr(mServerIP.c_str()) == -1)

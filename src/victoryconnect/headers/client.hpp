@@ -26,7 +26,7 @@ namespace VictoryConnect{
             std::vector<Packet> mSendQueue;
 
             // Functions
-            void sendQueue();
+            void offloadQueue();
             void onCommand();
             void onRequest();
             void onSubmit();

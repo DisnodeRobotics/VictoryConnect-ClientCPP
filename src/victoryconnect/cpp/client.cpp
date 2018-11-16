@@ -9,9 +9,11 @@ Client::Client(std::string id, std::string name){
 bool Client::enableTCP(std::string serverIP, int serverPort){
     TCPConnetion* tcp = new TCPConnetion(serverIP, serverPort);
     mConnections["TCP"] = tcp;
-
+    if(mDefaultConnection == ""){
+        mDefaultConnection = "TCP";
+        std::cout << "Setting Default Connection to TCP" << std::endl;
+    }
     bool startRes = tcp->start();
-    std::cout << "Start Result: " << startRes << std::endl;
     if(startRes){
         sendPacket(Packet(COMMAND,"server/register",{getId(), getName()}));
         return true;
@@ -27,9 +29,38 @@ void Client::sendPacket(Packet toSend){
 
 void Client::sendPacket(Packet toSend, std::string connection){
     toSend.setProtocol(connection);
+    std::cout << toSend.toString() << std::endl;
     mSendQueue.push_back(toSend);
+    offloadQueue();
 }
 
+void Client::offloadQueue(){
+    for(int i=0;i<mSendQueue.size();i++){
+        Packet toSend = mSendQueue[i];
+        std::string toSendString = toSend.getString();
+        std::string protocol = toSend.getProtocol();
+
+        if(protocol == "DEFAULT"){
+            protocol = mDefaultConnection;
+            std::cout 
+                << "Packet: " 
+                << toSend.getPath() 
+                << " does not have protocol selected. DEFAULT. Using: " 
+                << mDefaultConnection 
+                << std::endl;
+        }
+
+        Connection* con = mConnections[protocol];
+        if(con == nullptr){
+            std::cout << "Connection Null: " << protocol << std::endl;
+            return;
+        }else{
+            std::cout << "Sending: " << toSendString << std::endl;
+            con->sendString(toSendString);
+        }
+       
+    }
+}
 
 // Protocol Functions
 void Client::newTopic(std::string name, std::string path, std::string connection){

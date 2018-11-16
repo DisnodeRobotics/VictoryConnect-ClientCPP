@@ -41,6 +41,15 @@ TEST(VCPacketTest, PacketClassStringCheck){
   EXPECT_EQ(p1.getString(), "2 test/path {test1;test2;test3}~\n");
 }
 
+TEST(VCPacketTest, PacketClassProtocolCheck){
+  
+  Packet p1(PacketType::COMMAND,"test/path", {"TEST"});
+  p1.setProtocol("TCP");
+  EXPECT_EQ(p1.getProtocol(), "TCP");
+  p1.setProtocol("UDP");
+  EXPECT_EQ(p1.getProtocol(), "UDP");
+}
+
 TEST(VCPacketParserTest, PacketParserCheck){
   std::string inputString = "2 test/path {test1;test2;test3;}~";
  

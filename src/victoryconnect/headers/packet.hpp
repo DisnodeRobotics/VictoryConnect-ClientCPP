@@ -10,7 +10,7 @@ class Packet{
         PacketType mPacketType = COMMAND;
         std::string mPath;
         std::vector<std::string> mData;
-      //  std::string mProtocol = "DEFAULT";
+        std::string mProtocol = "DEFAULT";
         std::string mRaw = "";
     public:
         Packet(PacketType type, std::string path);
@@ -23,6 +23,7 @@ class Packet{
         void setType(PacketType type);
 
         // Get Methods
+        std::string toString();
         std::string getString(); 
         std::string getRaw();
         std::string getProtocol();
