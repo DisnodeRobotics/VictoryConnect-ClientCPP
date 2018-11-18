@@ -37,7 +37,7 @@ bool TCPConnetion::start()
 	}
 	mServer.sin_family = AF_INET;
 	mServer.sin_port = htons(mServerPort);
-	int result =  connect(mSock, (struct sockaddr *)&mServer, sizeof(mServer)) < 0;
+	int result = connect(mSock, (struct sockaddr *)&mServer, sizeof(mServer)) < 0;
 	if (result != 0)
 	{
 		cout << "LOL WUT" << endl;
@@ -60,7 +60,41 @@ bool TCPConnetion::sendString(string toSend)
 	}
 	else
 		cout << "Socket Null. Not sending" << endl;
-		return false;
+	return false;
 	std::cout << "Sent Packet: " << toSend << std::endl;
 	return true;
+}
+
+void TCPConnetion::startListening()
+{
+	mRecvTread = new std::thread(&TCPConnetion::revieveLoop);
+	mRecvTread->detach();
+}
+
+void TCPConnetion::revieveLoop(TCPConnetion *con)
+{
+	while (1)
+	{
+		char buffer[1024];
+		memset(&buffer[0], 0, sizeof(buffer));
+
+		string reply;
+		if (recv(con->mSock, buffer, 1024, 0) < 0)
+		{
+			cout << "receive failed!" << endl;
+		//	return nullptr;
+		}
+		buffer[1024 - 1] = '\0';
+		reply = buffer;
+		
+	}
+}
+
+void TCPConnetion::onRecieve(std::string data)
+{
+}
+TCPConnetion::~TCPConnetion()
+{
+	mRecvTread->join();
+	delete mRecvTread;
 }

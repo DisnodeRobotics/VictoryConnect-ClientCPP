@@ -14,12 +14,18 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <netdb.h>
-
+#include <thread>
 namespace VictoryConnect{
     class TCPConnetion : public Connection{
         private:
             int mSock = -1;
             struct sockaddr_in mServer;
+
+            std::thread* mRecvTread;
+
+            void startListening();
+            void revieveLoop();
+            void onRecieve(std::string data);
         public:
             TCPConnetion(std::string ip, int port)
             : Connection(ip, port) {}
@@ -27,6 +33,8 @@ namespace VictoryConnect{
             bool start();
             bool sendString (std::string toSend);
             
+
+            ~TCPConnetion();
     };
 }
 #endif

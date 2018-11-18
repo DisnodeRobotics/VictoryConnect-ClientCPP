@@ -1,4 +1,5 @@
 #include "utils.hpp"
+#include <chrono>
 using namespace VictoryConnect;
 std::string Utils::vectorJoin(std::vector<std::string> in, std::string joiner){
     std::string result = "";
@@ -28,4 +29,14 @@ std::vector<std::string> Utils::strSplit(std::string input, std::string delim){
     }
 
     return result;
+}
+
+int Utils::calcPing(std::string timestamp){
+    int packetTime = 0;
+    std::chrono::milliseconds currentTimeMS = 
+        std::chrono::duration_cast<std::chrono::milliseconds>
+        (std::chrono::system_clock::now().time_since_epoch());
+
+
+    return -1;
 }
