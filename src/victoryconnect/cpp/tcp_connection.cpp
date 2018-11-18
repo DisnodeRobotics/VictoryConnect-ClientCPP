@@ -59,6 +59,8 @@ bool TCPConnetion::sendString(string toSend)
 		}
 	}
 	else
+		cout << "Socket Null. Not sending" << endl;
 		return false;
+	std::cout << "Sent Packet: " << toSend << std::endl;
 	return true;
 }

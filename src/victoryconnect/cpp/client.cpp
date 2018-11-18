@@ -15,6 +15,7 @@ bool Client::enableTCP(std::string serverIP, int serverPort){
     }
     bool startRes = tcp->start();
     if(startRes){
+       
         sendPacket(Packet(COMMAND,"server/register",{getId(), getName()}));
         return true;
     }
@@ -40,7 +41,7 @@ void Client::offloadQueue(){
         std::string toSendString = toSend.getString();
         std::string protocol = toSend.getProtocol();
 
-        if(protocol == "DEFAULT"){
+        if(protocol == "DEFAULT" || protocol == ""){
             protocol = mDefaultConnection;
             std::cout 
                 << "Packet: " 
@@ -54,6 +55,7 @@ void Client::offloadQueue(){
         if(con == nullptr){
             std::cout << "Connection Null: " << protocol << std::endl;
             return;
+        
         }else{
             std::cout << "Sending: " << toSendString << std::endl;
             con->sendString(toSendString);

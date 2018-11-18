@@ -25,7 +25,7 @@ namespace VictoryConnect{
             : Connection(ip, port) {}
             
             bool start();
-            bool sendString(std::string toSend);
+            bool sendString (std::string toSend);
             
     };
 }

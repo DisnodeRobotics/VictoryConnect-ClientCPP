@@ -2,6 +2,7 @@
 #define _VC_CONNECTION_HEADER__
 #include <vector>
 #include <string>
+#include <iostream>
 namespace VictoryConnect{
     class Connection{
         protected:
@@ -15,7 +16,9 @@ namespace VictoryConnect{
 
             bool start();
 
-            bool sendString(std::string toSend);
+            virtual bool sendString(std::string toSend){
+                std::cout << "Default sendString. Override this" << std::endl;
+            }
 
             //Get Functions
             std::string getServerIP();
