@@ -6,16 +6,27 @@ Client::Client(std::string id, std::string name){
         mId = id;
         mName = name;
 }
+
+//Enables, Setups, and Connects to TCP Protocol
+//Params:
+//   string - serverIP    - IP of the VC server
+//   int    - serverPort  - Port of the VC server TCP connection
 bool Client::enableTCP(std::string serverIP, int serverPort){
+    // Create TCPConnection 
     TCPConnetion* tcp = new TCPConnetion(serverIP, serverPort);
-    mConnections["TCP"] = tcp;
-    if(mDefaultConnection == ""){
+    mConnections["TCP"] = tcp; // Set the connection map "TCP" to a pointer connection
+
+    //Set the default connection to TCP if it has not been set yet
+    if(mDefaultConnection == "" || mDefaultConnection == "DEFAULT"){
         mDefaultConnection = "TCP";
         std::cout << "Setting Default Connection to TCP" << std::endl;
     }
+    // Star the TCP Client
     bool startRes = tcp->start();
+
+    //If the TCP client starts, send a registration packet to the server to begin the process.
     if(startRes){
-       
+        // Packet= 2 sever/register {id;name}~/n
         sendPacket(Packet(COMMAND,"server/register",{getId(), getName()}));
         return true;
     }

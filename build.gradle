@@ -47,6 +47,8 @@ model {
             // Define toolchain-specific compiler and linker options
             if (toolChain in Gcc) {
                 cppCompiler.args "-std=c++11"
+                cppCompiler.args '-pthread'
+                linker.args '-pthread'
             }
             if (toolChain in VisualCpp) {
 

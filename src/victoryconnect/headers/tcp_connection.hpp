@@ -24,7 +24,7 @@ namespace VictoryConnect{
             std::thread* mRecvTread;
 
             void startListening();
-            void revieveLoop();
+            static void revieveLoop(TCPConnetion* con);
             void onRecieve(std::string data);
         public:
             TCPConnetion(std::string ip, int port)

@@ -67,7 +67,7 @@ bool TCPConnetion::sendString(string toSend)
 
 void TCPConnetion::startListening()
 {
-	mRecvTread = new std::thread(&TCPConnetion::revieveLoop);
+	mRecvTread = new std::thread(TCPConnetion::revieveLoop,this);
 	mRecvTread->detach();
 }
 
