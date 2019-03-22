@@ -39,6 +39,13 @@
         "tuple": "cpp",
         "typeindex": "cpp",
         "typeinfo": "cpp",
-        "utility": "cpp"
+        "utility": "cpp",
+        "bitset": "cpp",
+        "complex": "cpp",
+        "deque": "cpp",
+        "list": "cpp",
+        "memory": "cpp",
+        "optional": "cpp",
+        "string_view": "cpp"
     }
 }
